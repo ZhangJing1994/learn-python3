@@ -42,7 +42,7 @@ func main() {
 	viper.AddConfigPath("conf")
 	viper.SetConfigName("config")
 	viper.ReadInConfig()
-	a := viper.getString("httpPort")
+	// a := viper.GetString("httpPort")
 	router := httprouter.New()
 	router.GET("/", Index)
 	router.GET("/hello/:name", Hello)
@@ -52,5 +52,5 @@ func main() {
 	router.DELETE("/deluser/:uid", deleteuser)
 	router.PUT("/moduser/:uid", modifyuser)
 
-	log.Fatal(http.ListenAndServe(a, router))
+	log.Fatal(http.ListenAndServe(":8088", router))
 }
